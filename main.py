@@ -25,7 +25,6 @@ logging.getLogger("telegram").setLevel(logging.WARNING)
 # Переменные окружения
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CREATOR_CHAT_ID = int(os.getenv("CREATOR_CHAT_ID"))
-WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 ALLOWED_USERS = {CREATOR_CHAT_ID, 6811659941}
 
 # Глобальные переменные для обработки медиагрупп
@@ -197,9 +196,5 @@ if __name__ == "__main__":
         exc_info=True
     ))
     
-    logger.info("Бот запущен ✅ с Webhook")
-    app.run_webhook(
-        listen="0.0.0.0",
-        port=8080,
-        webhook_url=WEBHOOK_URL
-    )
+    logger.info("Бот запущен ✅ с Polling")
+    app.run_polling()
